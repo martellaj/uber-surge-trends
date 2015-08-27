@@ -49,22 +49,22 @@ app.get('*', function (req, res) {
 });
 
 // Get surge data from Uber API at XX:00 and XX:30.
-// schedule.scheduleJob({ minute: [0, 30] }, function () {
-// 	for (var i = 0; i < cities.length; i++) {
-// 		uber.getSurgeMultipliers(cities[i])
-// 			.then(function (multipliers) {
-// 				var now = new Date();
-// 				var standardDate = utilities.getStandardsDate(now);
-// 				var hours = now.getHours();
-// 				var minutes = now.getMinutes();
-// 				var dateTime = new Date(config.standardYear, config.standardMonth, standardDate, hours, minutes, 0, 0);
+schedule.scheduleJob({ minute: [0, 30] }, function () {
+	for (var i = 0; i < cities.length; i++) {
+		uber.getSurgeMultipliers(cities[i])
+			.then(function (multipliers) {
+				var now = new Date();
+				var standardDate = utilities.getStandardsDate(now);
+				var hours = now.getHours();
+				var minutes = now.getMinutes();
+				var dateTime = new Date(config.standardYear, config.standardMonth, standardDate, hours, minutes, 0, 0);
 
-// 				db.updateAggregates(multipliers, dateTime);
-// 			}, function (error) {
-// 				console.log('Error: ', error);
-// 			});
-// 	}
-// });
+				db.updateAggregates(multipliers, dateTime);
+			}, function (error) {
+				console.log('Error: ', error);
+			});
+	}
+});
 
 // Start the app.  
 app.listen(port);
