@@ -1,0 +1,78 @@
+<div class="main-jumbotron"></div>
+<div class="container" ng-show="main.cities">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 ride-col">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong class="text-uppercase">The ride</strong>
+        </div>
+        <div class="row my-row panel-body">
+          <!-- Cities -->
+          <div class="btn-group btn-group-vertical col-xs-9">
+            <div class="btn-group" dropdown>
+              <button class="btn btn-default" dropdown-toggle>{{ main.selectedCity }}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="option in main.cities">
+                  <a href="" ng-click="main.citySelected(option);">{{ option.city }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Ride types -->
+            <div class="btn-group" dropdown>
+              <button class="btn btn-default" dropdown-toggle>{{ main.selectedRideType }}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="option in main.rideTypes">
+                  <a href="" ng-click="main.rideTypeSelected(option);">{{ option }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Days -->
+            <div class="btn-group" dropdown>
+              <button class="btn btn-default" dropdown-toggle>{{ main.selectedDayOfWeek.label }}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="option in main.daysOfWeek">
+                  <a href="" ng-click="main.selectedDayOfWeek = option;">{{ option.label }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Submit button -->
+            <button class="btn btn-primary ladda-button" ladda-button="main.graphingRideData" data-style="zoom-in" ng-click="main.graphRideData()">Get surge history</button>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong class="text-uppercase">The surge history</strong>
+          <em ng-show="main.chartData[0].values">{{ main.selectedRideType }} in {{ main.selectedCity }} on {{ main.selectedDayOfWeek.label }}</em>
+        </div>
+        <div class="panel-body">
+          <div class="row" ng-hide="main.chartData">
+            <div class="col-xs-12">
+              <h4>Choose your ride to get its surge history.</h4>
+            </div>
+          </div>
+          <div class="row my-row" ng-show="main.chartData[0].values.length > 0">
+            <div class="col-xs-12">
+              <nvd3 options="main.chartOptions" data="main.chartData" api="lineChart.api"></nvd3>
+            </div>
+          </div>
+          <div class="row my-row" ng-show="main.chartData[0].values.length === 0">
+            <div class="col-xs-12">
+              <h4>Sorry, looks like we don't have any data about that ride.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Uber Surge Trends</title>
+    <base href="/">
+    <!-- Third party dependencies. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css" type="text/css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js"></script>   
+    <script src="https://rawgit.com/mbostock/d3/master/d3.min.js"></script>
+    <script src="https://rawgit.com/novus/nvd3/v1.1.15-beta/nv.d3.min.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/novus/nvd3/v1.1.15-beta/nv.d3.min.css"/>
+    <script src="https://rawgit.com/krispo/angular-nvd3/v0.1.1/dist/angular-nvd3.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Ladda/0.9.4/ladda.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css">
+    <script src="../node_modules/ladda-angular/dist/ladda-angular.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone-with-data-2010-2020.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <!-- App code. -->
+    <script src="scripts/app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="controllers/navbarController.js"></script>
+    <script src="services/citiesFactory.js"></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  
+  <body class="main">
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarController as nav">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/" ng-click="nav.isCollapsed = true;">Uber Surge Trends</a>
+          <button type="button" class="navbar-toggle collapsed" ng-click="nav.isCollapsed = !nav.isCollapsed">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" collapse="nav.isCollapsed">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/about" ng-click="nav.isCollapsed = true;"><i class="fa fa-cog"></i> About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div ng-view></div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted text-center footer-top">Uber Surge Trends is not affliated with or endorsed by Uber, but I love them anyway.</p>
+        <p class="text-muted text-center footer-bottom">Rendered in Redmond by <a href="http://joemartel.la" target="_blank">Joe Martella</a></p>
+      </div>
+    </footer>
+  </body>
+
+</html>
